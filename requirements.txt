@@ -1,7 +1,7 @@
+python==3.10
 numpy
 scikit-learn
 pandas
-pickle
 xgboost
 streamlit
 Pillow
