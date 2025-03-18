@@ -1,18 +1,15 @@
-# Import the required libraries
 import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
 from PIL import Image
 
-# Set the page configuration of the app
 st.set_page_config(
     page_title="Timelytics: Supply Chain Optimization",
     page_icon="🚀",
     layout="wide",
 )
 
-# Display the title and captions for the app
 st.title("Timelytics: Optimize Your Supply Chain with Advanced Forecasting")
 
 st.caption(
@@ -26,7 +23,6 @@ st.caption(
     "These forecasts can be used to optimize inventory management, improve customer service, and increase overall efficiency in the supply chain."
 )
 
-# Load the trained ensemble model from the saved pickle file
 modelfile = "voting_model.pkl"
 
 @st.cache_resource
@@ -37,7 +33,6 @@ def load_model():
 
 voting_model = load_model()
 
-# Function to predict wait time
 def waitime_predictor(
     purchase_dow,
     purchase_month,
@@ -58,7 +53,6 @@ def waitime_predictor(
     )
     return round(prediction[0])
 
-# Sidebar Inputs
 with st.sidebar:
     img = Image.open("./assets/supply_chain_optimisation.jpg")
     st.image(img)
@@ -75,7 +69,6 @@ with st.sidebar:
 
     submit = st.button("Predict Wait Time")
 
-# Output Section
 st.header("Output: Predicted Wait Time in Days")
 
 if submit:
@@ -92,7 +85,6 @@ if submit:
     with st.spinner("Calculating wait time..."):
         st.success(f"Estimated Wait Time: {prediction} days")
 
-# Sample Dataset
 st.header("Sample Dataset")
 data = {
     "Purchased Day of the Week": [0, 3, 1],
